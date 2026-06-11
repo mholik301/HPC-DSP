@@ -1,0 +1,132 @@
+
+// (NOP, do nothing)
+0: 0               
+1: 0  
+
+// LOAD_IMMEDIATE (ri <- ir_const8)
+2: 5             // ir_const8=3
+3: 000001 00     // ir_opcode=1, ir_ri=r0
+
+// MOVE (ri <- rj)
+4: 01 00 0000	// ir_rj=r1
+5: 000100 00	// ir_opcode=4, ir_ri=r0
+
+
+
+// LOAD_IMMEDIATE (ri <- ir_const8)
+6: 1             // ir_const8=3
+7: 000001 01     // ir_opcode=1, ir_ri=r0 
+
+// LOAD_IMMEDIATE (ri <- ir_const8)
+8: 64              // ir_const8=64
+9: 000001 10       // ir_opcode=2, ir_ri=r2
+
+// STORE (MEM(rk) <- rj)
+10: 01 10 0000		// ir_rj=r1=1, ir_rk=r2=64
+11: 000110 00		// ir_opcode=6, ir_ri=r0
+
+// LOAD (ri <- MEM(addr))
+12: 64				// ir_const8=64
+13: 000101 00		// ir_opcode=5, ir_ri=r0
+
+
+
+// JMP addr
+14: 18			// ir_const8=18
+15: 000111 00		// ir_opcode=7
+
+// HALT
+16: 0              //
+17: 000101 00      // ir_opcode=3
+
+
+
+// LOAD_IMMEDIATE (r2 <- ir_const8)
+18: 28              // ir_const8=28
+19: 000001 10       // ir_opcode=2, ir_ri=r2
+
+// SUB (ri <- rj - rk)
+20: 01 00 0000     // ir_rj=r1, ir_rk=r0
+21: 001001 00      // ir_opcode=9, ir_ri=0
+
+//r0=0, r1=1
+
+
+// JZ rj, rk (pc=r7 <- rk if rj=0)
+22: 01 10 0000     // ir_rj=r1, ir_rk=r2=28
+23: 001000 00      // ir_opcode=8, ir_ri=0
+
+// JZ rj, rk (pc=r7 <- rk if rj=0)
+24: 00 10 0000     // ir_rj=r0, ir_rk=r2=28
+25: 001000 00      // ir_opcode=8, ir_ri=0
+
+// HALT
+26: 0              //
+27: 000101 00      // ir_opcode=3
+
+
+
+// SHL ri, rj (ri <- SHL(rj))
+28: 01 00 0000		// ir_rj=r1, ir_rk=0
+29: 001010 00		// ir_opcode=10, ir_ri=0
+
+// r0=2
+
+// LDSP addr (r5 <- ir_const8)
+30: 127				// ir_const8=254
+31: 001011 00		// ir_opcode=11, ir_ri=0
+
+// PUSH rj (mem[r5] <- rj, r5-1)
+32: 00 00 0000		// ir_rj=r1, ir_rk=0
+33: 001100 00		// ir_opcode=12, ir_ri=0
+
+// POP ri (ri <- mem[r5], r5+1)
+34: 00 00 0000		// ir_rj=r0, ir_rk=0
+35: 001101 01		// ir_opcode=12, ir_ri=r1
+
+// r1=2
+
+
+
+
+// CALL addr (mem[r5] <- r7, r7 <- const8)
+36: 50			// ir_const8=50
+37: 001110 00		// ir_opcode=14, ir_ri=0
+
+
+// HALT
+38: 0              //
+39: 000011 00      // ir_opcode=3
+
+
+
+
+
+64: 0
+
+
+
+
+
+// RET (r7 <- mem[r5])
+50: 00 00 0000		// ir_rj=0, ir_rk=0
+51: 001111 00		// ir_opcode=15, ir_ri=0
+
+
+
+
+
+
+
+
+
+
+// Stack
+123: 0
+124: 0
+125: 0
+126: 0
+127: 0
+
+
+

@@ -1,0 +1,23 @@
+>> b % float kvantizacijski koeficijenti filtra
+>> bqi % kvantizirani koeficijenti filtra (integer)
+>> bq % stvarni kvantizirani koeficijenti
+
+Generirajte i pobudni signal duljine 1000 uzoraka koji ´cete koristiti za verifikaciju,
+>> t  % vektor vremena
+>> x % pobudni signal
+>> xqi % kvantizirani pobudni signal (integer)
+>> xq % stvarni kvantizirani signal
+
+
+
+>> dump_c_data16(xqi, ’signal’, ’signal_fract16.h’, 1);
+>> dump_c_data16(bqi, ’coeffs’, ’coeffs_fract16.h’, 1);
+
+>> dump_c_floats(x, ’signal’, ’signal_float.h’); % header s pobudnim signalom
+>> dump_c_floats(b, ’coeffs’, ’coeffs_float.h’); % header s koeficijentimas
+>> dump_c_data16(xqi, ’signal’, ’signal_integer.h’, 0); % ista stvar za
+>> dump_c_data16(bqi, ’coeffs’, ’coeffs_integer.h’, 0); % cjelobrojne koeficijente
+
+
+>> y = conv(b, x); % izracunaj odziv (aka. neka matlab izracuna ocekivane izlazne vrijednosti FIR filtra)
+>> y(1:10) % ispisi prvih nekoliko uzoraka
